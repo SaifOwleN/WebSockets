@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    <script defer src="./index.js"></script> 
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="text-white bg-slate-900 h-screen flex justify-center flex-col items-center">
+    <p></p>
+
+
+    <div id="chat" class="w-96 h-96 bg-gradient-to-r from-cyan-500 to-purple-600 p-1">
+    <div id="chat" class="w-full h-full bg-gray-800 text-white p-4">
+    <h1 class="text-3xl font-bold">Chat Room</h1>
+        <ul class="px-2 py-2"></ul>
+    </div>
+    </div>
+    <form class="flex mt-4 mb-2 w-96 mx-4" id="enter">
+      <input id="name" class=" bg-transparent border-2 p-4 border-gray-700 w-full mr-4 rounded-3xl h-10">
+      <button class="bg-black w-20 rounded-xl text-white " type="submit">Send</button>
+    </form>
+
+    <form class="flex my-2 mx-4 w-96" id="message">
+      <input class="bg-transparent border-2 p-4 border-gray-700 w-full mr-4 rounded-3xl h-10" id="messageInp">
+      <button class="bg-black w-20 rounded-xl text-white " type="submit">Send</button>
+    </form>
+  </body>
+</html>
