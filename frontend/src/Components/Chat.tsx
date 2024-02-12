@@ -1,8 +1,6 @@
 import { useState, useEffect, SyntheticEvent } from "react";
 import { socket } from "../Socket";
 import { useNavigate } from "react-router-dom";
-import { Excalidraw } from "@excalidraw/excalidraw";
-import { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types/types";
 
 interface MessageType {
   content: string;
@@ -12,7 +10,6 @@ interface MessageType {
 const Chat = () => {
   const [chat, setChat] = useState<Array<MessageType>>([]);
   const [message, setMessage] = useState("");
-  const [ExcalidrawApi, setExcalidrawApi] = useState<ExcalidrawImperativeAPI>();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,16 +26,6 @@ const Chat = () => {
     socket.on("message", (content: string) => {
       setChat((prevChat) => [...prevChat, { content, type: "message" }]);
     });
-
-    socket.on("watch", ({ excalidrawElements, appState }) => {
-      console.log(excalidrawElements);
-      const sceneData = {
-        elements: excalidrawElements,
-        appState,
-      };
-      ExcalidrawApi?.updateScene(sceneData);
-      console.log(ExcalidrawApi?.getAppState());
-    });
   }, [socket]);
 
   const sendMessage = (e: SyntheticEvent) => {
@@ -47,22 +34,8 @@ const Chat = () => {
     setMessage("");
   };
 
-  const drawing = (excalidrawElements, appState) => {
-    socket.emit("draw", { excalidrawElements, appState });
-  };
-
   return (
     <div className="text-white bg-slate-900 h-screen flex items-center">
-      <div>
-        <h1>Excalidraw Example</h1>
-        <div className="w-[700px] h-[400px]">
-          <Excalidraw
-            theme="light"
-            onChange={drawing}
-            excalidrawAPI={(api) => setExcalidrawApi(api)}
-          />
-        </div>
-      </div>
       <div
         id="chat"
         className="w-96 h-96 bg-gradient-to-r from-cyan-500 to-purple-600 p-1 "
